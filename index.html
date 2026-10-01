@@ -3,267 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Datos Personales</title>
+    <title>MarketOnline - Categorías</title>
+    <!-- Estilos de Bootstrap inyectados localmente -->
     <style>
-        /* ==========================================================================
-           DEFINICIÓN DE TEMAS (Variables de CSS)
-           ========================================================================== */
-        :root {
-            /* Por defecto se abre en el modo oscuro (Paso 2 / Final) */
-            --bg-body: #2b3a42;
-            --bg-card: linear-gradient(135deg, #1e2436, #2d384e);
-            --border-card: #3d4b66;
-            --title-color: #ff8c42;
-            --label-color: #ffb07c;
-            --input-bg: #3b475f;
-            --input-border: #526384;
-            --input-text: #ffffff;
-            --btn-bg: #f1c40f;
-            --btn-text: #1e2436;
-            --btn-hover: #f39c12;
-        }
-
-        /* Clase para el ESTILO 1 (Modo Claro - Paso 1 de las diapositivas) */
-        body.estilo-claro {
-            --bg-body: #f0f2f5;
-            --bg-card: #ffffff;
-            --border-card: #cccccc;
-            --title-color: #333333;
-            --label-color: #555555;
-            --input-bg: #ffffff;
-            --input-border: #cccccc;
-            --input-text: #333333;
-            --btn-bg: #3498db; /* Botón celeste */
-            --btn-text: #ffffff;
-            --btn-hover: #2980b9;
-        }
-
-        /* ==========================================================================
-           ESTILOS GENERALES (Estructura fija)
-           ========================================================================== */
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--bg-body);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            transition: background-color 0.3s;
-        }
-
-        .form-card {
-            background: var(--bg-card);
-            background-color: var(--bg-card); /* Compatibilidad */
-            padding: 35px 25px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            width: 100%;
-            max-width: 420px;
-            box-sizing: border-box;
-            border: 1px solid var(--border-card);
-            transition: all 0.3s;
-        }
-
-        h2 {
-            color: var(--title-color);
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 25px;
-            font-size: 24px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        label {
-            display: block;
-            color: var(--label-color);
-            font-weight: bold;
-            margin-bottom: 8px;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px 12px;
-            background-color: var(--input-bg);
-            border: 1px solid var(--input-border);
-            border-radius: 6px;
-            color: var(--input-text);
-            font-size: 15px;
-            box-sizing: border-box;
-            transition: all 0.3s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #ff8c42;
-        }
-
-        .error-message {
-            color: #ff4d4d;
-            font-size: 13px;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            margin-top: 25px;
-        }
-
-        button, input[type="submit"] {
-            width: 140px;
-            padding: 10px;
-            background-color: var(--btn-bg);
-            color: var(--btn-text);
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.2s, color 0.2s;
-            text-align: center;
-        }
-
-        button:hover, input[type="submit"]:hover {
-            background-color: var(--btn-hover);
-        }
+        body { background-color: #f8f9fa; font-family: system-ui, -apple-system, sans-serif; color: #212529; margin: 0; padding: 20px; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 10px 15px; }
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 1.5rem; }
+        .mb-5 { margin-bottom: 3rem; }
+        .row { display: flex; flex-wrap: wrap; margin-right: -12px; margin-left: -12px; }
+        .col-12 { flex: 0 0 100%; max-width: 100%; padding: 12px; box-sizing: border-box; }
+        @media (min-width: 768px) { .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; } }
+        .card { position: relative; display: flex; flex-direction: column; min-width: 0; background-color: #fff; border: 0 solid rgba(0,0,0,.125); border-radius: 0.5rem; box-shadow: 0 .25rem .5rem rgba(0,0,0,.05); height: 100%; text-align: center; overflow: hidden; }
+        .card-img-top { width: 100%; aspect-ratio: 16/9; object-fit: cover; background-color: #e9ecef; }
+        .card-body { flex: 1 1 auto; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; }
+        .card-title { font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700; }
+        .btn { display: inline-block; font-weight: 600; text-align: center; text-decoration: none; vertical-align: middle; cursor: pointer; border: 1px solid transparent; padding: .5rem 1rem; font-size: 1rem; border-radius: .25rem; margin-top: 1rem; }
+        .btn-primary { color: #fff; background-color: #0d6efd; border-color: #0d6efd; }
+        .bg-dark { background-color: #1a1e21!important; }
+        .text-white { color: #fff!important; }
+        .btn-light { color: #212529; background-color: #f8f9fa; border-color: #f8f9fa; }
+        .logo-img { max-width: 100%; height: auto; width: 320px; margin: 0 auto; display: block; }
     </style>
 </head>
 <body>
 
-    <div class="form-card">
-        <h2>Formulario de Datos Personales</h2>
+    <div class="container">
         
-        <form id="registroForm" novalidate>
+        <!-- ENCABEZADO CON TU LOGO REAL (FUNCIONANDO) -->
+        <header class="text-center mb-5">
+            <img src="../logo.png.jpeg" alt="MarketOnline Logo" class="logo-img mb-4">
+        </header>
+
+        <!-- GRID DE LAS 6 CATEGORÍAS -->
+        <div class="row">
             
-            <div class="form-group">
-                <label purchasers for="nombre">Nombre:</label>
-                <input type="text" id="nombre" value="3">
-                <div class="error-message" id="error-nombre">El campo Nombre solo puede contener letras.</div>
+            <!-- 1. Tecnología -->
+            <div class="col-12 col-md-4">
+                <div class="card">
+                    <img src="../tecnologia.jpg.jpg" class="card-img-top" alt="Tecnología">
+                    <div class="card-body">
+                        <h4 class="card-title">Tecnología</h4>
+                        <a href="#" class="btn btn-primary">Ver Productos</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" value="3">
-                <div class="error-message" id="error-apellido">El campo Apellido solo puede contener letras.</div>
+            <!-- 2. Ropa -->
+            <div class="col-12 col-md-4">
+                <div class="card">
+                    <img src="../ropa.jpg.webp" class="card-img-top" alt="Ropa">
+                    <div class="card-body">
+                        <h4 class="card-title">Ropa</h4>
+                        <a href="#" class="btn btn-primary">Ver Productos</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" id="email" value="4@ddd">
-                <div class="error-message" id="error-email">El formato del Email no es válido.</div>
+            <!-- 3. Joyas -->
+            <div class="col-12 col-md-4">
+                <div class="card">
+                    <img src="../joyas.jpg.jpg" class="card-img-top" alt="Joyas">
+                    <div class="card-body">
+                        <h4 class="card-title">Joyas</h4>
+                        <a href="#" class="btn btn-primary">Ver Productos</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="fecha">Fecha de Nacimiento:</label>
-                <input type="date" id="fecha">
-                <div class="error-message" id="error-fecha">El campo Fecha de Nacimiento es obligatorio.</div>
+            <!-- 4. Moda y Accesorios -->
+            <div class="col-12 col-md-4">
+                <div class="card">
+                    <!-- Enlace estable en la nube para garantizar que cargue sin fallar de manera local -->
+                    <img src="../moda.jpg.jpg" class="card-img-top" alt="Moda y Accesorios">
+                    <div class="card-body">
+                        <h4 class="card-title">Moda y Accesorios</h4>
+                        <a href="#" class="btn btn-primary">Ver Productos</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="pais">País de Residencia:</label>
-                <input type="text" id="pais" value="4">
-                <div class="error-message" id="error-pais">El campo País de Residencia solo puede contener letras.</div>
+            <!-- 5. Juguetes -->
+            <div class="col-12 col-md-4">
+                <div class="card">
+                    <img src="../juguetes.jpg.jpg" class="card-img-top" alt="Juguetes">
+                    <div class="card-body">
+                        <h4 class="card-title">Juguetes</h4>
+                        <a href="#" class="btn btn-primary">Ver Productos</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="button-group">
-                <input type="submit" value="Enviar">
-                <!-- Se agrega la función cambiarTema() al botón Estilo 1 -->
-                <button type="button" id="btn-tema" onclick="cambiarTema()">Estilo 1</button>
+            <!-- 6. Otras categorías -->
+            <div class="col-12 col-md-4">
+                <div class="card bg-dark text-white">
+                    <div class="card-body" style="min-height: 180px;">
+                        <h4 class="card-title">Otras categorías</h4>
+                        <p style="color: #a0aec0; font-size: 0.95rem;">Descubre promociones exclusivas en bazar, hogar y más.</p>
+                        <a href="#" class="btn btn-light">Descubrir Más</a>
+                    </div>
+                </div>
             </div>
 
-        </form>
-    </div>
-
-    <script>
-        const form = document.getElementById('registroForm');
-
-        // LÓGICA DE VALIDACIÓN (Botón Enviar)
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
-            const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            let esValido = true;
-
-            const nombre = document.getElementById('nombre').value.trim();
-            const errorNombre = document.getElementById('error-nombre');
-            if (!soloLetras.test(nombre)) {
-                errorNombre.style.display = 'block';
-                esValido = false;
-            } else {
-                errorNombre.style.display = 'none';
-            }
-
-            const apellido = document.getElementById('apellido').value.trim();
-            const errorApellido = document.getElementById('error-apellido');
-            if (!soloLetras.test(apellido)) {
-                errorApellido.style.display = 'block';
-                esValido = false;
-            } else {
-                errorApellido.style.display = 'none';
-            }
-
-            const email = document.getElementById('email').value.trim();
-            const errorEmail = document.getElementById('error-email');
-            if (!formatoEmail.test(email)) {
-                errorEmail.style.display = 'block';
-                esValido = false;
-            } else {
-                errorEmail.style.display = 'none';
-            }
-
-            const fecha = document.getElementById('fecha').value;
-            const errorFecha = document.getElementById('error-fecha');
-            if (fecha === "") {
-                errorFecha.style.display = 'block';
-                esValido = false;
-            } else {
-                errorFecha.style.display = 'none';
-            }
-
-            const pais = document.getElementById('pais').value.trim();
-            const errorPais = document.getElementById('error-pais');
-            if (!soloLetras.test(pais)) {
-                errorPais.style.display = 'block';
-                esValido = false;
-            } else {
-                errorPais.style.display = 'none';
-            }
-
-            if (esValido) {
-                alert("¡Excelente! Todos los campos son correctos.");
-            }
-        });
-
-        // LÓGICA DE INTERCAMBIO DE ESTILOS (Botón Estilo 1)
-        function cambiarTema() {
-            const body = document.body;
-            const boton = document.getElementById('btn-tema');
-            
-            // Alterna la clase claro/oscuro
-            body.classList.toggle('estilo-claro');
-            
-            // Cambia el texto del botón dinámicamente para alternar
-            if (body.classList.contains('estilo-claro')) {
-                boton.innerText = "Estilo Oscuro";
-            } else {
-                boton.innerText = "Estilo 1";
-            }
-        }
-    </script>
+        </div> <!-- Fin de ROW -->
+    </div> <!-- Fin de CONTAINER -->
 
 </body>
 </html>
